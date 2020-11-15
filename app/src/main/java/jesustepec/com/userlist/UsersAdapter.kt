@@ -5,6 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class UsersAdapter(private val usersList: ArrayList<User>) :
     RecyclerView.Adapter<UsersAdapter.UserViewHolder>() {
@@ -25,10 +28,17 @@ class UsersAdapter(private val usersList: ArrayList<User>) :
         holder.txtName.text = item.name
         holder.txtMail.text = item.mail
         holder.txtStatus.text = item.status.text
+        holder.txtStatus.setBackgroundColor(item.status.color)
     }
 
     override fun getItemCount(): Int {
         return usersList.size
     }
+
+    fun formatDate(date: Date): String {
+        val format = SimpleDateFormat("dd/MM/yyy", Locale.getDefault())
+        return format.format(date)
+    }
+
 
 }
